@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7f8b24744b47e20d1804e0d9de75c1b3",
+    "content-hash": "07783e9a15a9094b073fcb5cc27fb189",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -339,16 +339,16 @@
         },
         {
             "name": "isbnlab/isbnlab-php",
-            "version": "v0.2.0",
+            "version": "v0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/isbnlab/isbnlab-php.git",
-                "reference": "e7c7c0897dba13d554f796f652b461ff6976c194"
+                "reference": "94d81a5e99e2e430ec2e22a4c1cd012ebed9670d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/isbnlab/isbnlab-php/zipball/e7c7c0897dba13d554f796f652b461ff6976c194",
-                "reference": "e7c7c0897dba13d554f796f652b461ff6976c194",
+                "url": "https://api.github.com/repos/isbnlab/isbnlab-php/zipball/94d81a5e99e2e430ec2e22a4c1cd012ebed9670d",
+                "reference": "94d81a5e99e2e430ec2e22a4c1cd012ebed9670d",
                 "shasum": ""
             },
             "require": {
