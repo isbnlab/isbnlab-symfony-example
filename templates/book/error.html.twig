@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Error {{ error.status }}{% endblock %}
+
+{% block body %}
+    <h1>{{ isbn ? 'ISBN ' ~ isbn : 'Not available' }}</h1>
+    <p class="error">{{ error.message }}</p>
+    <p><a href="{{ path('home') }}">Look up another book</a></p>
+{% endblock %}

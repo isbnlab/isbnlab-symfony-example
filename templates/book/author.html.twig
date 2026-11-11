@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ author.name }}{% endblock %}
+
+{% block body %}
+    <div class="book">
+        <div>
+            {% set photo = author.photos|first %}
+            {% if photo %}
+                <img src="{{ photo.url }}" alt="{{ author.name }}">
+                {# A licensed photo must be shown with its credit and license. #}
+                {% if photo.license %}
+                    <small>{{ photo.credit }}, {% if photo.licenseUrl %}<a href="{{ photo.licenseUrl }}">{{ photo.license }}</a>{% else %}{{ photo.license }}{% endif %}</small>
+                {% endif %}
+            {% endif %}
+        </div>
+        <div>
+            <h1>{{ author.name }}</h1>
+            <dl>
+                {% if author.birthDate %}<dt>Born</dt><dd>{{ author.birthDate|date('F j, Y') }}</dd>{% endif %}
+                {% if author.deathDate %}<dt>Died</dt><dd>{{ author.deathDate|date('F j, Y') }}</dd>{% endif %}
+            </dl>
+            {% if author.bio %}<p>{{ author.bio|nl2br }}</p>{% endif %}
+        </div>
+    </div>
+{% endblock %}

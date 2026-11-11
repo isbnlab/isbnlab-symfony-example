@@ -1,0 +1,28 @@
+# The ISBNLab client classes as services, so controllers and commands can ask
+# for BooksApi, IsbnApi or AuthorsApi in their constructor.
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../src/'
+
+    # One HTTP client for every ISBNLab call. Tests replace it with a mock.
+    isbnlab.http_client:
+        class: GuzzleHttp\Client
+        arguments:
+            - { timeout: 10 }
+
+    ISBNLab\Configuration:
+        calls:
+            - [setAccessToken, ['%env(ISBNLAB_API_TOKEN)%']]
+
+    ISBNLab\Api\BooksApi:
+        arguments: ['@isbnlab.http_client', '@ISBNLab\Configuration']
+
+    ISBNLab\Api\IsbnApi:
+        arguments: ['@isbnlab.http_client', '@ISBNLab\Configuration']
+
+    ISBNLab\Api\AuthorsApi:
+        arguments: ['@isbnlab.http_client', '@ISBNLab\Configuration']

@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block body %}
+    <div class="book">
+        <div>
+            {% if book.covers %}
+                <img src="{{ book.covers|first }}" alt="Cover of {{ book.title }}">
+            {% endif %}
+        </div>
+        <div>
+            <h1>{{ book.title }}</h1>
+            {% if book.subtitle %}<p><em>{{ book.subtitle }}</em></p>{% endif %}
+
+            <dl>
+                {% if book.authors %}
+                    <dt>By</dt>
+                    <dd>
+                        {% for author in book.authors %}
+                            {%- if author.id %}<a href="{{ path('author', {id: author.id}) }}">{{ author.name }}</a>{% else %}{{ author.name }}{% endif %}{{ not loop.last ? ', ' -}}
+                        {% endfor %}
+                    </dd>
+                {% endif %}
+                {% if book.series and book.series.name %}
+                    <dt>Series</dt>
+                    <dd>{{ book.series.name }}{% if book.series.number %}, book {{ book.series.number }}{% endif %}</dd>
+                {% endif %}
+                {% if book.publishDate %}
+                    <dt>Published</dt>
+                    {# A year-only date is sent as January 1, so check the precision first. #}
+                    <dd>{{ book.publishDate|date(book.publishDatePrecision == 'day' ? 'F j, Y' : (book.publishDatePrecision == 'month' ? 'F Y' : 'Y')) }}</dd>
+                {% endif %}
+                {% if book.publishers %}
+                    <dt>Publisher</dt>
+                    <dd>{{ book.publishers|map(p => p.name)|join(', ') }}</dd>
+                {% endif %}
+                {% if book.physicalFormat %}<dt>Format</dt><dd>{{ book.physicalFormat }}</dd>{% endif %}
+                {% if book.numberOfPages %}<dt>Pages</dt><dd>{{ book.numberOfPages }}</dd>{% endif %}
+                <dt>ISBN-13</dt><dd>{{ book.isbn13 ?? '-' }}</dd>
+                <dt>ISBN-10</dt><dd>{{ book.isbn10 ?? '-' }}</dd>
+            </dl>
+
+            {% if book.link %}
+                <p><a href="{{ book.link }}">See this book on ISBNLab</a></p>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if book.description %}
+        <h2>Description</h2>
+        {# The description can contain HTML from the publisher; this example shows it as text. #}
+        <p>{{ book.description|striptags|nl2br }}</p>
+    {% endif %}
+
+    {% if book.otherEditions %}
+        <h2>Other editions ({{ book.otherEditions|length }})</h2>
+        <table>
+            <thead><tr><th>ISBN-13</th><th>Format</th><th>Pages</th><th>Year</th></tr></thead>
+            <tbody>
+            {% for edition in book.otherEditions|slice(0, 25) %}
+                <tr>
+                    <td>{% if edition.isbn13 %}<a href="{{ path('book', {isbn: edition.isbn13}) }}">{{ edition.isbn13 }}</a>{% else %}-{% endif %}</td>
+                    <td>{{ edition.physicalFormat ?? '-' }}</td>
+                    <td>{{ edition.pages ?? '-' }}</td>
+                    <td>{{ edition.published ?? '-' }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

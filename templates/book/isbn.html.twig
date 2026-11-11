@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ISBN {{ details.isbn13 }}{% endblock %}
+
+{% block body %}
+    <h1>ISBN {{ details.isbn13Formatted ?? details.isbn13 }}</h1>
+    <dl>
+        <dt>ISBN-13</dt><dd>{{ details.isbn13Formatted ?? '-' }}</dd>
+        <dt>ISBN-10</dt><dd>{{ details.isbn10Formatted ?? '-' }}</dd>
+        <dt>EAN</dt><dd>{{ details.ean ?? '-' }}</dd>
+        <dt>ASIN</dt><dd>{{ details.asin ?? '-' }}</dd>
+        <dt>Registration group</dt><dd>{{ details.registrationGroupName ?? details.registrationGroup ?? '-' }}</dd>
+        <dt>Registrant</dt><dd>{{ details.registrant ?? '-' }}</dd>
+        <dt>Check digit</dt><dd>{{ details.checkDigit ?? '-' }}</dd>
+    </dl>
+    {% if details.isbn13 %}
+        <p><a href="{{ path('book', {isbn: details.isbn13}) }}">Look up this book</a></p>
+    {% endif %}
+{% endblock %}

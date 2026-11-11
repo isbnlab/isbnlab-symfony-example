@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Look up a book</h1>
+    <p>Enter an ISBN-10 or ISBN-13. Each lookup is one call to the ISBNLab API.</p>
+    <form action="{{ path('home') }}" method="get">
+        <input type="text" name="isbn" placeholder="9780765302304" aria-label="ISBN" required>
+        <button type="submit">Look up</button>
+    </form>
+    <p>Try <a href="{{ path('book', {isbn: '9780765302304'}) }}">9780765302304</a>
+        or <a href="{{ path('isbn', {isbn: '0765302306'}) }}">convert 0765302306</a>.</p>
+{% endblock %}

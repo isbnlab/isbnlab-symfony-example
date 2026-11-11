@@ -1,0 +1,19 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  phpunit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: curl, mbstring
+      - run: composer install --no-interaction --no-progress
+      - run: bin/console lint:twig templates
+      - run: bin/console lint:container
+      - run: vendor/bin/phpunit
