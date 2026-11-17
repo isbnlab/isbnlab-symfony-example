@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "07783e9a15a9094b073fcb5cc27fb189",
+    "content-hash": "8d489f6220938eeea59cde8e62318514",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -339,16 +339,16 @@
         },
         {
             "name": "isbnlab/isbnlab-php",
-            "version": "v0.2.1",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/isbnlab/isbnlab-php.git",
-                "reference": "94d81a5e99e2e430ec2e22a4c1cd012ebed9670d"
+                "reference": "30efdcbfba259a46636e99928fdf78b5733896d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/isbnlab/isbnlab-php/zipball/94d81a5e99e2e430ec2e22a4c1cd012ebed9670d",
-                "reference": "94d81a5e99e2e430ec2e22a4c1cd012ebed9670d",
+                "url": "https://api.github.com/repos/isbnlab/isbnlab-php/zipball/30efdcbfba259a46636e99928fdf78b5733896d1",
+                "reference": "30efdcbfba259a46636e99928fdf78b5733896d1",
                 "shasum": ""
             },
             "require": {
@@ -399,7 +399,7 @@
                 "issues": "https://github.com/isbnlab/isbnlab-php/issues",
                 "source": "https://github.com/isbnlab/isbnlab-php"
             },
-            "time": "2026-11-11T07:14:47+00:00"
+            "time": "2026-11-17T03:09:13+00:00"
         },
         {
             "name": "psr/cache",

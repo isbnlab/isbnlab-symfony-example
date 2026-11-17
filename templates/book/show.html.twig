@@ -68,5 +68,9 @@
             {% endfor %}
             </tbody>
         </table>
+    {% elseif book.otherEditionsCount %}
+        {# Free and Standard plans get the number of other editions; the list needs a Pro plan. #}
+        <h2>Other editions ({{ book.otherEditionsCount }})</h2>
+        <p>Listing them needs a <a href="https://www.isbnlab.com/pricing">Pro plan</a>.</p>
     {% endif %}
 {% endblock %}

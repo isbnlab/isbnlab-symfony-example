@@ -31,6 +31,20 @@ final class BookPagesTest extends WebTestCase
         self::assertSelectorExists('table tbody tr');
     }
 
+    public function testOnAPlanWithoutTheEditionListTheCountIsShown(): void
+    {
+        $client = static::createClient();
+        new MockIsbnLab(static::getContainer(), MockIsbnLab::json('book-free.json'));
+
+        $client->request('GET', '/book/9780765302304');
+
+        self::assertResponseIsSuccessful();
+        self::assertSelectorTextContains('h1', 'The Gathering Storm');
+        self::assertSelectorTextContains('main', 'Other editions (2)');
+        self::assertSelectorExists('a[href="https://www.isbnlab.com/pricing"]');
+        self::assertSelectorNotExists('table tbody tr');
+    }
+
     public function testABookThatIsNotInTheCatalogIsA404(): void
     {
         $client = static::createClient();

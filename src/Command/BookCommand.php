@@ -45,7 +45,7 @@ final class BookCommand
             ['Series' => null !== $series?->getName() ? $series->getName().(null !== $series->getNumber() ? ' #'.$series->getNumber() : '') : '-'],
             ['ISBN-10' => $book->getIsbn10() ?? '-'],
             ['ISBN-13' => $book->getIsbn13() ?? '-'],
-            ['Other editions' => \count($book->getOtherEditions() ?? [])],
+            ['Other editions' => $book->getOtherEditionsCount() ?? \count($book->getOtherEditions() ?? [])],
             ['On ISBNLab' => $book->getLink() ?? '-'],
         );
 
